@@ -21,7 +21,14 @@ class V[K: Numeric, A] private (val bag: HashMap[A, K]) {
 
   def *(scalar: K) = V(bag.mapValues { w => w * scalar })
   def unary_-() = this * num.fromInt(-1)
-
+  
+  def map[B](f : (A) => B) : V[K, B] = {
+    val newBag = bag.foldLeft(HashMap.empty[B, K]) {
+      case (acc, (k, v)) => acc + (f(k) -> (acc.getOrElse(f(k), num.zero) + v))
+    }
+    V(newBag)
+  }
+  
   override def toString() = "V(%s)".format(bag)
 }
 
