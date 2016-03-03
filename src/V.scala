@@ -36,6 +36,9 @@ class V[K: Numeric, A] private (val bag: HashMap[A, K]) {
     vs.foldLeft(V.zero[K,B]) {_+_}
   }
   
+  def filter(p : (A) => Boolean): V[K, A] = 
+    flatMap(a => if (p(a)) V(a) else V.zero[K,A])
+  
   override def toString() = "V(%s)".format(bag)
 }
 
