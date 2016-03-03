@@ -1,3 +1,5 @@
+package vectorspace
+
 import scala.collection.immutable.HashMap
 
 class V[K: Numeric, A] private (val bag: HashMap[A, K]) {
