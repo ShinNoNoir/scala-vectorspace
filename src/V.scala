@@ -29,6 +29,8 @@ class V[K: Numeric, A] private (val bag: HashMap[A, K]) {
     V(newBag)
   }
   
+  def flatMap[B](f : (A) => V[K, B]): V[K, B] = map(f).flatten
+  
   def flatten[B](implicit ev: A <:< V[K, B]): V[K, B] = {
     val vs = for ((v,w) <- bag) yield v*w
     vs.foldLeft(V.zero[K,B]) {_+_}
