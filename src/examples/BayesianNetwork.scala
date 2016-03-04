@@ -33,7 +33,7 @@ object BayesianNetwork extends App {
       if (r) (vtrue*0.8 + vfalse*0.2)
       else   vfalse
   
-  println("Query 1: Did it rain?")
+  println("Query 1: Is the grass wet?")
   val q1 = for {
     r <- Rain()
     s <- Sprinkler(r)
